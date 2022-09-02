@@ -32,6 +32,7 @@ export default function Products() {
   if (error) return <p>Error: {error}</p>;
   return (
     <ProductListStyles>
+      {console.log(data)}
       {data.allProducts.map((product) => (
         <Product key={product.id} product={product} />
       ))}

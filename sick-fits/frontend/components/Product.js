@@ -1,4 +1,4 @@
-import { Link } from 'next/link';
+import Link from 'next/link';
 import ItemStyles from './styles/ItemStyles';
 import Title from './styles/Title';
 import PriceTag from './styles/PriceTag';
@@ -14,7 +14,7 @@ export default function Product({ product }) {
       <Title>
         <Link href={`/product/${product.id}`}>{product.name}</Link>
       </Title>
-      <PriceTag>{formatMoney(product.price)}</PriceTag>
+      {/* <PriceTag>{formatMoney(product.price)}</PriceTag> */}
       <p>{product.description}</p>
       {/* TODO: add delete and edit */}
     </ItemStyles>
