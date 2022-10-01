@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import NavStyles from './styles/NavStyles';
 import { useUser } from './User';
+import SignOut from './SignOut';
 
 export default function Nav() {
   const user = useUser();
@@ -15,6 +16,7 @@ export default function Nav() {
         </>
       )}
       {!user && <Link href="/signin">Sign In</Link>}
+      {user && <SignOut />}
     </NavStyles>
   );
 }

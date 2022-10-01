@@ -10,7 +10,7 @@ export default function Product({ product }) {
     <ItemStyles>
       <img
         src={product?.photo?.image?.publicUrlTransformed}
-        alt="product.name"
+        alt={product.name}
       />
       <PriceTag>{formatMoney(product.price)}</PriceTag>
       <Title>
