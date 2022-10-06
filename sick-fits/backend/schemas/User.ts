@@ -16,6 +16,6 @@ export const User = list({
         itemView: { fieldMode: 'read' },
       },
     }),
-    // TODO add roles, orders, and cart
+    // TODO add roles, and orders
   },
 });
