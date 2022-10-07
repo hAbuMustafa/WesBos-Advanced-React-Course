@@ -4,6 +4,7 @@ import { resetIdCounter, useCombobox } from 'downshift';
 import gql from 'graphql-tag';
 import debounce from 'lodash.debounce';
 import { useRouter } from 'next/dist/client/router';
+import { useRef } from 'react';
 import { DropDown, DropDownItem, SearchStyles } from './styles/DropDown';
 
 const SEARCH_PRODUCTS_QUERY = gql`
@@ -39,7 +40,14 @@ export default function Search() {
 
   const items = data?.searchTerms || [];
 
-  const findItemsButChill = debounce(findItems, 350); // Because we don't want overload on our database on every keystroke, just search whenever typing stops for 350 milliseconds
+  // const findItemsButChill = debounce(findItems, 350); // Because we don't want overload on our database on every keystroke, just search whenever typing stops for 350 milliseconds
+  const findItemsButChill = useRef(null);
+  if (!findItemsButChill.current) {
+    findItemsButChill.current = debounce((args) => {
+      console.log('debounce timeout');
+      findItems(args);
+    }, 1000);
+  }
   resetIdCounter(); // Fixes the SSR class names mismatching with Client Side Rendering
 
   const {
@@ -55,7 +63,7 @@ export default function Search() {
     onInputValueChange() {
       // Could also destructure inputValue in onInputValueChange call as an argument
       // onInputValueChange fires when user types into searchbox
-      findItemsButChill({
+      findItemsButChill.current({
         variables: { searchTerm: inputValue },
       });
     },
