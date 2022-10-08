@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
+import { useRouter } from 'next/dist/client/router';
 import Form from './styles/Form';
 import useForm from '../lib/UseForm';
 import { CURRENT_USER_QUERY } from './User';
@@ -24,6 +25,7 @@ const SIGNIN_MUTATION = gql`
 `;
 
 export default function SignIn() {
+  const router = useRouter();
   const { inputs, handleChange, resetForm } = useForm({
     email: '',
     password: '',
@@ -40,6 +42,9 @@ export default function SignIn() {
     const res = await signin();
     console.log(res);
     resetForm();
+    router.push({
+      pathname: '/',
+    });
   }
 
   const error =
