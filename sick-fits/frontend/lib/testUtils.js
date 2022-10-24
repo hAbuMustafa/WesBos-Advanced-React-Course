@@ -1,5 +1,5 @@
 import casual from 'casual';
-import { PAGINATION_QUERY } from '../components/Pagination';
+import { ITEMS_COUNT_QUERY } from '../components/Pagination';
 
 // seed it so we get consistent results
 casual.seed(777);
@@ -10,8 +10,8 @@ const fakeItem = () => ({
   price: 5000,
   user: null,
   photo: {
-    id: 'abc123',
-    altText: 'dogs are best',
+    id: 123,
+    altText: 'this is a dog',
     image: {
       publicUrlTransformed: 'dog.jpg',
     },
@@ -88,7 +88,7 @@ class LocalStorageMock {
 function makePaginationMocksFor(length) {
   return [
     {
-      request: { query: PAGINATION_QUERY },
+      request: { query: ITEMS_COUNT_QUERY },
       result: {
         data: {
           _allProductsMeta: {

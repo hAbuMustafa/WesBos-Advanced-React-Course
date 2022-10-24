@@ -43,7 +43,7 @@ export default function SingleProduct({ id }) {
   if (error) return <DisplayError error={error} />;
   const { Product } = data; // if you are not happy about the capital 'P' you can always rename query items like this {Product: product} or in the query itself as => product: Product(where....etc)
   return (
-    <ProductStyles>
+    <ProductStyles data-testid="singleProduct">
       <Head>
         <title>Sick Fits | {Product.name}</title>
       </Head>
@@ -59,3 +59,5 @@ export default function SingleProduct({ id }) {
     </ProductStyles>
   );
 }
+
+export { SINGLE_PRODUCT_QUERY };

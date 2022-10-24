@@ -32,7 +32,7 @@ const CREATE_PRODUCT_MUTATION = gql`
   }
 `;
 
-export function CreateProduct() {
+export default function CreateProduct() {
   const { inputs, handleChange, resetForm, clearForm } = UseForm({
     image: '',
     name: '',
@@ -50,12 +50,12 @@ export function CreateProduct() {
         e.preventDefault();
         // Submit the input fields to the backend
         // const res = await createProduct();
-        await createProduct(); // you can add the variables to be passed to the backend here if you cant ddetermine them at the time of defining the mutation;
+        const res = await createProduct(); // you can add the variables to be passed to the backend here if you cant ddetermine them at the time of defining the mutation;
         // console.log(res);
         clearForm();
         // Go to the product page
         Router.push({
-          pathname: `/product/${data.createProduct.id}`,
+          pathname: `/product/${res.data.createProduct.id}`,
         });
       }}
     >
@@ -108,3 +108,5 @@ export function CreateProduct() {
     </Form>
   );
 }
+
+export { CREATE_PRODUCT_MUTATION };
